@@ -1,0 +1,58 @@
+<div style="display:flex; flex-direction:row; justify-content:space-between;">
+    <div><h1>Welcome back, <%= @user.firstname%></h1></div>
+    <div style="display:flex; flex-direction:column;">
+        <a href = "/sign_out">Sign Out</a>
+        <a href = "/users/<%= @user.id%>/edit">Change Password</a>
+        <a href = "/users/<%= @user.id%>/delete">Delete User</a>
+    </div>
+</div>
+<p>
+    <%@users = User.all().to_a%>
+</p>
+
+<table style="border:1px solid black;">
+    <tr>
+        <th style="border:1px solid black;">FirstName</th>
+        <th style="border:1px solid black;">LastName</th>
+        <th style="border:1px solid black;">Age</th>
+        <th style="border:1px solid black;">Email</th>
+    </tr>
+    <%
+        len = @users.length
+        i = 0
+        while i < len
+    %>
+    <tr>
+        <td><%= @users[i]['firstname']%></td>
+        <td><%= @users[i]['lastname']%></td>
+        <td><%= @users[i]['age']%></td>
+        <td><%= @users[i]['email']%></td>
+    </tr>
+    <%
+        i+= 1
+        end
+    %>
+</table>
+
+<br>
+
+<div style="display:flex; flex-direction:row; justify-content:space-between;">
+    <form method="POST" action="/users">
+        <label for="firstname">Firstname: </label>
+        <input type="text" name="firstname">
+        <br>
+        <label for="lastname">Lastname: </label>
+        <input type="text" name="lastname">
+        <br>
+        <label for="age">Age: </label>
+        <input type="number" name="age">
+        <br>
+        <label for="password">Password: </label>
+        <input type="password" name="password">
+        <br>
+        <label for="email">Email: </label>
+        <input type="email" name="email">
+        <br>
+        <input type="submit" value="Add New User">
+    </form>
+</div>
