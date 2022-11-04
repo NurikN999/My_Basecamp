@@ -12,7 +12,7 @@ class UsercontrollersController < ApplicationController
   # GET: /sign_in
   get "/sign_in" do
     if signed_in?
-      redirect '/users'
+      redirect '/projects'
     else
       erb :"/usercontrollers/sign_in.html"
     end
@@ -23,7 +23,7 @@ class UsercontrollersController < ApplicationController
     @user = User.find_by(email: params[:email], password: params[:password])
     if @user
       session[:user_id] = @user.id
-      redirect '/users'
+      redirect '/projects'
     else
       redirect '/sign_in'
     end

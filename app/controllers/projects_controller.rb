@@ -13,7 +13,8 @@ class ProjectController < ApplicationController
             i+=1
         end
 
-        p @project_list.to_s
+        erb :"projectcontrollers/index.html"
+        
     end
 
     #PATCH: /project/:id
