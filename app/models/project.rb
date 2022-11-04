@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
         begin
             db = get_db()
             @id = db.query("SELECT COUNT(*) FROM projects").next[0] + 1
-            @project = db.query("INSERT INTO projects() VALUES ()"),[@id, project_info['name'], project_info['description']]
+            @project = db.query("INSERT INTO projects() VALUES (?,?)"),[@id, project_info['name'], project_info['description']]
             p @project.first
             db.close
             return @project
@@ -25,6 +25,17 @@ class Project < ActiveRecord::Base
             p exception
         end
         return @project_list
+    end
+
+    def update(project_id, attribute, value)
+        begin
+            db = get_db
+            result = db.query("UPDATE projects SET #{attribute} = '#{value}' WHERE id = #{project_id}").next
+            return result
+        rescue => exception
+            p 'Exception occured'
+            p exception
+        end
     end
 
     def get_db
