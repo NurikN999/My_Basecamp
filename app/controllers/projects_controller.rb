@@ -36,4 +36,13 @@ class ProjectController < ApplicationController
         }
         return Project.create(project_info)
     end
+
+    #GET: /project/new
+    get "/project/new" do
+        if signed_in?
+            erb :"projectcontrollers/create.html"
+        else
+            redirect '/sign_in'
+        end
+    end
 end
