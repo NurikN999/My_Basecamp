@@ -50,7 +50,8 @@ class ProjectController < ApplicationController
     post "/project/new" do
         project_info = {
             "name" => params[:name],
-            "description" => params[:description]
+            "description" => params[:description],
+            "creator" => session[:user_id]
         }
         Project.create(project_info)
 
