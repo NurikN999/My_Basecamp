@@ -1,20 +1,38 @@
 class ProjectController < ApplicationController
     #GET: /projects
     get "/projects" do
-        @projects = Project.all()
-        len = @projects.length
-        i = 0
-        @project_list = []
-        project_hash = Hash.new
-        while i < len
-            project_hash['name'] = @projects[i]['name']
-            project_hash['description'] = @projects[i]['description']
-            @project_list.push(project_hash)
-            i+=1
-        end
-
+        @projects = Project.new.all_projects()
+        @user = User.find(session[:user_id])
         erb :"projectcontrollers/index.html"
-        
+    end
+
+    #GET: /project/:id/edit
+    get "/project/:id/edit" do
+        if signed_in?           
+            @project = Project.find(params[:id])
+            erb :"/projectcontrollers/edit.html"
+        else
+            redirect "/projects"
+        end
+    end
+
+    #PATCH: /project/:id/edit
+    post "/project/:id/edit" do
+        if signed_in?
+            if params[:id].empty?
+                return 'Error'
+            else
+                @project = Project.find(params[:id])
+                if @project
+                    @project.update(params[:id], params[:attribute], params[:value])
+                    redirect "/projects"
+                else
+                    redirect "/projects"
+                end
+            end
+        else
+            redirect "/projects"
+        end
     end
 
     #PATCH: /project/:id
@@ -34,7 +52,19 @@ class ProjectController < ApplicationController
             "name" => params[:name],
             "description" => params[:description]
         }
-        return Project.create(project_info)
+        Project.create(project_info)
+
+        redirect "/projects"
+    end
+
+    #DELETE: /project/delete
+    post "/project/:id/delete" do
+        if signed_in?
+            Project.new.destroy(params[:id]) 
+            redirect "/projects"
+        else
+            redirect "/sign_in"
+        end
     end
 
     #GET: /project/new

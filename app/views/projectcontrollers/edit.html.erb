@@ -1,0 +1,10 @@
+<form action = "/project/<%= @project.id%>/edit" method = "POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label for = "attribute">Enter attribute which you want to edit: </label>
+    <input type = "text" name="attribute">
+    <br>
+    <label for = "value">Enter new value: </label>
+    <input type = "text" name="value">
+    <br>
+    <input type = "submit" value = "Update">
+</form>

@@ -38,6 +38,17 @@ class Project < ActiveRecord::Base
         end
     end
 
+    def destroy(project_id)
+        begin
+            db = get_db
+            result = db.query("DELETE FROM projects WHERE id = #{project_id}").next
+            return result
+        rescue => exception
+            p 'Exception occured'
+            p exception
+        end
+    end
+
     def get_db
         db = SQLite3::Database.new './db/development.sqlite'
         db.results_as_hash = true

@@ -1,11 +1,24 @@
-<div>
-    <form action = "/project/new" method = "POST">
-        <label for = "name">Name Your Project: </label>
-        <input type = "text" name="name">
-        <br>
-        <label for = "description">Write Your Description: </label>
-        <input type = "text" name="description">
-        <br>
-        <input type = "submit" value = "Update">
-    </form>
-</div>
+<div class="container justify-content-center">
+        <div class="form" style="width: 40%; margin: 0 auto">
+            <form action="" method="post" class="">
+                <h1 class="form-label">Create New Project</h1>
+                <div class="column">
+                    <div class="name">
+                        <label for="name" class="form-label">Project Name: </label>
+                        <input type="text" name="name" class="form-text">
+                        <br>
+                    </div>
+
+                    <div class="description">
+                        <label for="description" class="form-label">Project Description: </label>
+                        <input type="text" name="description" class="form-text">
+                        <br>
+                    </div>
+
+                    <div class="button">
+                        <input type="submit" value="Create" class="btn btn-dark">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

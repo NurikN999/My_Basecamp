@@ -1,6 +1,61 @@
-<div>
-    <h1><%= @project_list[0]['name']%></h1>
-    <h2><%= @project_list[0]['description']%></h2>
+<div class="container">
+        <div class="header text-center">
+            <h1 class="h-50">Welcome back, <%= @user.firstname%></h1>
+        </div>
+        <div class="row justify-content-center">
+            <%
+                len = @projects.length
+                i = 0
+                while i < len do
+            %>
 
-    <a href="/project/new">Create New Project</a>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="row">
+                            <div class="card-title">
+                                Project #<%= @projects[i]['id']%>
+                            </div>
+
+                        <div class="buttons">
+                                <div class="row">
+                                    <div class="btn">
+                                        <form method="get" action="/project/<%= @projects[i]['id']%>/edit">
+                                            <input type="submit" value="edit">
+                                        </form>
+                                    </div>
+
+                                    <div class="btn">
+                                        <form method="post" action="/project/<%= @projects[i]['id']%>/delete">
+                                            <input type="submit" value="remove">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-header">
+                            <%= @projects[i]['name']%>
+                        </div>
+                        <div class="card-body">
+                            <%= @projects[i]['description']%>
+                        </div>
+                        <div class="card-footer">
+                            Footer
+                        </div>
+                    </div>
+                </div>
+
+            <%
+                    i += 1
+                end
+            %>
+
+            <div class="confirm">
+                <div class="row">
+                    <div class="btn">
+                        <a href="/project/new"><button class="btn-primary btn-dark">Create Project</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
