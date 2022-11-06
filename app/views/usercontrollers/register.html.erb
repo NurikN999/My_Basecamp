@@ -1,23 +1,86 @@
-<h1>Register Form</h1>
-<div class="container center">
-    <form action = "/register" method = "POST" class="form">
-        <label for="Firstname">Firstname: </label>
-        <input name="firstname" placeholder="Write your firstname" type="text">
-        <br>
-        <label for="lastname">Lastname: </label>
-        <input name="lastname" placeholder="Write your lastname" type="text">
-        <br>
-        <label for="age">Age: </label>
-        <input name="age" placeholder="Write your age" type="number">
-        <br>
-        <label for="password">Password: </label>
-        <input name="password" placeholder="Write your password" type="password">
-        <br>
-        <label for="email">Email: </label>
-        <input name="email" placeholder="Write your email" type="email">
-        <br>
+<section class="h-screen">
+  <div class="px-6 h-full text-gray-800">
+    <div
+      class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6"
+    >
+      <div
+        class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
+      >
+        <img
+          src="images/log.png"
+          class="w-5/6"
+          alt="Sample image"
+        />
+      </div>
+      <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-8 md:mb-0">
+      <p class="text-2xl mr-4 font-bold mb-4">Register Form</p>
+        <form action = "/register" method = "POST">
 
-        <input type="submit" value="Register" class="button">
-    </form>
-</div>
+         <div class="mb-6">
+            <input
+              name="firstname"
+              type = "text" 
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Firstname"
+            />
+          </div>
 
+        <div class="mb-6">
+            <input
+              name="lastname"
+              type = "text" 
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Lastname"
+            />
+          </div>
+         
+        <div class="mb-6">
+            <input
+              name="age" 
+              type = "number" 
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="age"
+            />
+          </div>
+
+          <div class="mb-6">
+            <input
+              type = "email" 
+              name = "email"
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Email address"
+            />
+          </div>
+
+    
+          <div class="mb-6">
+            <input
+              type="password"
+              name = "password"
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Password"
+            />
+          </div>
+          <div class="mb-6">
+            <input
+              type="password"
+              name = "confirm-password"
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Comfirm Password"
+            />
+          </div>
+
+        <a href="/sign_in" class="hover:text-gray-800 ">Have an account?<span class="pl-1 text-blue-500 hover:text-blue-200 focus:text-blue-500 transition duration-200 ease-in-out font-bold">Login</span></a>
+          <div class="text-center lg:text-left">
+           
+
+             <input type="submit" 
+             value="Register"
+             class="inline-block px-7 py-3 bg-blue-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+           
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
