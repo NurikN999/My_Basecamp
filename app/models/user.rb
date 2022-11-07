@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     def find(user_id)
         db = get_db()
         @user = db.query "SELECT * FROM users WHERE id = #{user_id}"
-        db.close
+        # db.close
         return @user.next
     end
 
