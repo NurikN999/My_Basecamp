@@ -1,6 +1,13 @@
 class ProjectController < ApplicationController
     #GET: /projects
+    # working on the main project page
     get "/projects" do
+        @projects = Project.new.all_projects()
+        @user = User.find(session[:user_id])
+        erb :"projectcontrollers/main.html"
+    end
+
+    get "/project" do
         @projects = Project.new.all_projects()
         @user = User.find(session[:user_id])
         erb :"projectcontrollers/index.html"
