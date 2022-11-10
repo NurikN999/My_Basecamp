@@ -6,9 +6,9 @@
 						
 						<!-- Primary Navbar items -->
 						<div class="hidden md:flex items-center space-x-1">
-							<a href="" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">+ Add project</a>
+							<a href="/project/new" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">+ Add project</a>
 							<a href="" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">Edit project</a>
-							<a href="" class="py-4 px-2 text-blue-500 font-semibold hover:text-red-500 transition duration-300">Logout</a>
+							<a href="/sign_out" class="py-4 px-2 text-blue-500 font-semibold hover:text-red-500 transition duration-300">Logout</a>
 						</div>
 					</div>
 					
@@ -66,7 +66,8 @@
         <% while i<@projects.length do %>
         <% prj_name= @projects[i]["name"] %>
          <% description=  @projects[i]['description'] %>
-         <%email=@user.email%>
+         <%email=@user['email']%>
+		 <%delete_link = "/project/" + @projects[i]["id"].to_s + "/delete"%>
         <% contains='
             <div class="flex justify-center">
             <div class="block rounded-lg shadow-lg bg-white w-full text-center mx-4">
@@ -80,7 +81,7 @@
             </p>
             </div>
             <div class="py-3 px-6 border-t border-gray-300 text-gray-600 bg-blue-100">
-            <span class="text-red-400">' + "DELETE" + '</span>
+            <span class="text-red-400"><a href =  > ' + "DELETE" + ' </a></span>
             </div>
         </div>
         </div>' %>
