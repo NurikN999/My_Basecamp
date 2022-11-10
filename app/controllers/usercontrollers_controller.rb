@@ -54,8 +54,9 @@ class UsercontrollersController < ApplicationController
         'email' => email
       }
       User.create(user_info)
+      redirect "/sign_in"
     else
-      redirect "/users"
+      redirect "/register"
     end
   end
 
@@ -84,7 +85,7 @@ class UsercontrollersController < ApplicationController
   #GET: /sign_out
   get "/sign_out" do
     session.destroy
-    redirect '/sign_in'
+    redirect '/'
   end
 
   #PATCH: /users/:id
