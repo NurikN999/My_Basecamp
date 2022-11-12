@@ -6,9 +6,9 @@
 						
 						<!-- Primary Navbar items -->
 						<div class="hidden md:flex items-center space-x-1">
-							<a href="" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">+ Add project</a>
+							<a href="/project/new" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">+ Add project</a>
 							<a href="" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">Edit project</a>
-							<a href="" class="py-4 px-2 text-blue-500 font-semibold hover:text-red-500 transition duration-300">Logout</a>
+							<a href="/sign_out" class="py-4 px-2 text-blue-500 font-semibold hover:text-red-500 transition duration-300">Logout</a>
 						</div>
 					</div>
 					
@@ -33,9 +33,8 @@
 			<!-- mobile menu -->
 			<div class="hidden mobile-menu md:hidden">
 				<ul class="">
-                
-					<li class="bg-blue-500 text-center text-white"><a href="/create" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">+ Add project</a></li>
-					<li class="bg-blue-500 text-center text-white my-1"><a href="/project/<%= @projects[0]['id']%>/edit" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100">Edit project</a></li>
+					<li class="bg-blue-500 text-center text-white"><a href="/create class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">+ Add project</a></li>
+					<li class="bg-blue-500 text-center text-white my-1"><a href="/edit" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100">Edit project</a></li>
 					<li class="bg-blue-500 text-center text-white"><a href="/logout" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">Logout</a></li>
 				</ul>
 			</div>
@@ -67,31 +66,78 @@
         <% while i<@projects.length do %>
         <% prj_name= @projects[i]["name"] %>
          <% description=  @projects[i]['description'] %>
-         <%# <%email=@user.email%> 
-		 <%mail= @user["email"]%>
-
-        <% contains='
-            <div class="flex justify-center">
-            <div class="block rounded-lg shadow-lg bg-white w-full text-center mx-4">
-            <div class="py-3 px-6 border-b border-gray-300 bg-blue-500 text-white">
-            <p>' + prj_name + '</p>
-            <p class="text-left flex justify-between">' +mail+ '<a href="/"><img src="images/pen.png/" class="w-4"></a></p>
-            </div>
-            <div class="p-6">
-            <p class="text-gray-700 text-base mb-4">
-                ' + description + '
-            </p>
-            </div>
-            <div class="py-3 px-6 border-t border-gray-300 text-gray-600 bg-blue-100">
-            <span class="text-red-400">' + "DELETE" + '</span>
-            </div>
-        </div>
-        </div>' %>
+         <%email=@user['email']%>
+         <%delete_link = "project/" + @projects[i]["id"].to_s + "/delete"%>
           
             <div class="hidden  md:flex flex-row text-blue-500 font-medium my-4 ">
-                <div class="basis-1/3 p-1"><%= contains%></div>
-                <div class="basis-1/3 p-1"><%=contains%></div>
-                <div class="basis-1/3 p-1"><%= contains%></div>
+            <% if @projects[i]["creator"] == session[:user_id]%>
+                <div class="basis-1/3 p-1">
+                    <div class="flex justify-center">
+                        <div class="block rounded-lg shadow-lg bg-white w-full text-center mx-4">
+                            <div class="py-3 px-6 border-b border-gray-300 bg-blue-800 text-white">
+                                <p><%=prj_name%></p>
+                                <p><span class="text-blue-500"><a href = "/project/<%= @projects[i]["id"]%>/edit">edit</a></span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-gray-700 text-base mb-4">
+                                    <%= description %>
+                                </p>
+                            </div>
+                            <div class="py-3 px-6 border-t border-gray-300 text-gray-600 bg-blue-100">
+                                <span class="text-red-400">
+                                    <form method="post" action=<%=delete_link%>>
+                                        <input type="submit" value="DELETE">
+                                    </form>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end%>
+                <div class="basis-1/3 p-1">
+                    <div class="flex justify-center">
+                        <div class="block rounded-lg shadow-lg bg-white w-full text-center mx-4">
+                            <div class="py-3 px-6 border-b border-gray-300 bg-blue-800 text-white">
+                                <p><%=prj_name%></p>
+                                <p><span class="text-blue-500"><a href = "/project/<%= @projects[i]["id"]%>/edit">edit</a></span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-gray-700 text-base mb-4">
+                                    <%= description %>
+                                </p>
+                            </div>
+                            <div class="py-3 px-6 border-t border-gray-300 text-gray-600 bg-blue-100">
+                                <span class="text-red-400">
+                                    <form method="post" action=<%=delete_link%>>
+                                        <input type="submit" value="DELETE">
+                                    </form>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="basis-1/3 p-1">
+                    <div class="flex justify-center">
+                        <div class="block rounded-lg shadow-lg bg-white w-full text-center mx-4">
+                            <div class="py-3 px-6 border-b border-gray-300 bg-blue-800 text-white">
+                                <p><%=prj_name%></p>
+                                <p><span class="text-blue-500"><a href = "/project/<%= @projects[i]["id"]%>/edit">edit</a></span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-gray-700 text-base mb-4">
+                                    <%= description %>
+                                </p>
+                            </div>
+                            <div class="py-3 px-6 border-t border-gray-300 text-gray-600 bg-blue-100">
+                                <span class="text-red-400">
+                                    <form method="post" action=<%=delete_link%>>
+                                        <input type="submit" value="DELETE">
+                                    </form>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <%i=i+1%>
         <% end %>
@@ -99,31 +145,3 @@
 
 
       
-
-           <!-- Mobile menu button -->
-					<div class="md:hidden flex items-center mt-2">
-						<button class="outline-none mobile-menu-button">
-						<svg class=" w-8 h-8 text-blue-500 hover:text-blue-500 "
-							x-show="!showMenu"
-							fill="none"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-						>
-							<path d="M4 6h16M4 12h16M4 18h16"></path>
-						</svg>
-					</button>
-					</div>
-				</div>
-			</div>
-			<!-- mobile menu -->
-			<div class="hidden mobile-menu md:hidden">
-				<ul class="">
-                
-					<li class="bg-blue-500 text-center text-white"><a href="/create" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">+ Add project</a></li>
-					<li class="bg-blue-500 text-center text-white my-1"><a href="/project/<%= @projects[0]['id']%>/edit" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100">Edit project</a></li>
-					<li class="bg-blue-500 text-center text-white"><a href="/logout" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">Logout</a></li>
-				</ul>
-			</div>
