@@ -76,7 +76,7 @@
                         <div class="block rounded-lg shadow-lg bg-white w-full text-center mx-4">
                             <div class="py-3 px-6 border-b border-gray-300 bg-blue-800 text-white">
                                 <p><%=prj_name%></p>
-                                <p><span class="text-blue-500">edit</span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
+                                <p><span class="text-blue-500"><a href = "/project/<%= @projects[i]["id"]%>/edit">edit</a></span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
                             </div>
                             <div class="p-6">
                                 <p class="text-gray-700 text-base mb-4">
@@ -99,7 +99,7 @@
                         <div class="block rounded-lg shadow-lg bg-white w-full text-center mx-4">
                             <div class="py-3 px-6 border-b border-gray-300 bg-blue-800 text-white">
                                 <p><%=prj_name%></p>
-                                <p><span class="text-blue-500">edit</span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
+                                <p><span class="text-blue-500"><a href = "/project/<%= @projects[i]["id"]%>/edit">edit</a></span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
                             </div>
                             <div class="p-6">
                                 <p class="text-gray-700 text-base mb-4">
@@ -121,7 +121,7 @@
                         <div class="block rounded-lg shadow-lg bg-white w-full text-center mx-4">
                             <div class="py-3 px-6 border-b border-gray-300 bg-blue-800 text-white">
                                 <p><%=prj_name%></p>
-                                <p><span class="text-blue-500">edit</span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
+                                <p><span class="text-blue-500"><a href = "/project/<%= @projects[i]["id"]%>/edit">edit</a></span> Created by: <%= Project.new.find_creator(@projects[i]["creator"])%></p>
                             </div>
                             <div class="p-6">
                                 <p class="text-gray-700 text-base mb-4">
