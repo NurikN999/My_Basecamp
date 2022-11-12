@@ -1,4 +1,77 @@
-<form action = "/project/<%= @project.id%>/edit" method = "POST">
+<%# New edit UI %>
+<div>
+	<!-- Primary Navbar items -->
+    <div class="hidden md:flex items-center space-x-1 justify-end ">
+        <a href="/project/new" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">+ Add project</a>
+        <a href="" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">Edit project</a>
+        <a href="/sign_out" class="py-4 px-2 text-blue-500 font-semibold hover:text-red-500 transition duration-300">Logout</a>
+    </div>
+
+<!-- Mobile menu button -->
+    <div class="md:hidden flex items-center mt-2">
+        <button class="outline-none mobile-menu-button">
+        <svg class=" w-8 h-8 text-blue-500 hover:text-blue-500 "
+            x-show="!showMenu"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+    </div>
+			
+    <!-- mobile menu -->
+    <div class="hidden mobile-menu md:hidden">
+        <ul class="">
+            <li class="bg-blue-500 text-center text-white"><a href="/create class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">+ Add project</a></li>
+            <li class="bg-blue-500 text-center text-white my-1"><a href="/edit" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100">Edit project</a></li>
+            <li class="bg-blue-500 text-center text-white"><a href="/logout" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">Logout</a></li>
+        </ul>
+    </div>
+    <script>
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
+        
+    <h1 class="text-center text-4xl font-bold">Edit Project!!</h1>
+      <h1 class="text-center">Created by creator</h1>
+
+<form action="/project/<%= @project.id%>/edit" method = "POST" class="">
+    <div class="mx-8 md: mx-4">
+            <div class="my-8">
+                <label for="name"class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Name</label>
+                <div class="block md:flex">
+                <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-12 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4 ">
+                <input type="submit" value="Update name" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-700 md:ml-8 mb-4">
+                
+                </div>
+            </div>
+
+
+            <div class="my-8">
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Discription</label>
+                <div class="block md:flex">
+                <textarea name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Describe your project here"></textarea>
+                <div>
+                <input type="submit" value="Update description" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5  text-center inline-flex items-center dark:focus:ring-blue-700 md:ml-8 my-4"> </div>
+                </div>
+            </div>
+    </div>
+    
+</form>
+</div>
+
+    
+
+<%# <form action = "/project/= @project.id/edit" method = "POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <label for = "attribute">Enter attribute which you want to edit: </label>
     <input type = "text" name="attribute">
@@ -7,4 +80,4 @@
     <input type = "text" name="value">
     <br>
     <input type = "submit" value = "Update">
-</form>
+</form> %>
