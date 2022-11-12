@@ -13,6 +13,15 @@ class Project < ActiveRecord::Base
         end
     end
 
+    def find_creator(creator_id)
+        begin
+            db = get_db()
+            creator_name = db.query("SELECT firstname FROM users JOIN projects ON users.id = projects.creator WHERE projects.creator = #{creator_id}").next["firstname"].to_s
+        rescue => exception
+            return exception
+        end
+    end
+
     def all_projects()
         @project_list = []
         begin
