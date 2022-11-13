@@ -4,16 +4,9 @@ class ProjectController < ApplicationController
     get "/projects" do
         @projects = Project.new.all_projects()
         @user = User.new.find(session[:user_id])
-        # return session["user_id"]
         erb :"projectcontrollers/main.html"
     end
 
-    get "/project" do
-        @projects = Project.new.all_projects()
-        @user = User.find(2)
-        # return @user
-        erb :"projectcontrollers/main.html"
-    end
 
     #GET: /project/:id/edit
     get "/project/:id/edit" do
@@ -91,6 +84,22 @@ class ProjectController < ApplicationController
         # p project_members.to_s
 
         redirect "/projects"
+    end
+
+    #POST: /project/:id/edit/invite
+    post "/project/:id/edit/invite" do
+        user_id = User.find_by(email: params[:email])['id']
+        if user_id
+            project_member = {
+                "project_id" => params[:id],
+                "member_id" => user_id,
+                "role" => 0
+            }
+            ProjectMembers.create(project_member)
+            redirect "/projects"
+        else
+            redirect "/projects"
+        end
     end
 
     #DELETE: /project/delete
