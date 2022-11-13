@@ -3,3 +3,4 @@ development:
   encoding: utf8
   database: 'db/development.sqlite'
   pool: 5
+  timeout: 1000

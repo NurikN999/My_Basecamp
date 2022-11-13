@@ -22,6 +22,18 @@ class Project < ActiveRecord::Base
         end
     end
 
+    def find_by_email(user_email)
+        begin
+            db = get_db()
+            user_id = db.query("SELECT * FROM users WHERE email = \'#{user_email}\'").next["id"]
+            return user_id.to_s
+        rescue => exception
+            p exception
+        ensure
+            
+        end
+    end
+
     def all_projects()
         @project_list = []
         begin
