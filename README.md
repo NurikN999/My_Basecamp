@@ -51,5 +51,3 @@ While on Windows OS, you should use
 ```
     rackup config.ru 
 ```
-
-### The Core Team
