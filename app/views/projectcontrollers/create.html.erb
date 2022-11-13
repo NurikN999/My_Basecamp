@@ -1,24 +1,64 @@
-<div class="container justify-content-center">
-        <div class="form" style="width: 40%; margin: 0 auto">
-            <form action="" method="post" class="">
-                <h1 class="form-label">Create New Project</h1>
-                <div class="column">
-                    <div class="name">
-                        <label for="name" class="form-label">Project Name: </label>
-                        <input type="text" name="name" class="form-text">
-                        <br>
-                    </div>
-
-                    <div class="description">
-                        <label for="description" class="form-label">Project Description: </label>
-                        <input type="text" name="description" class="form-text">
-                        <br>
-                    </div>
-
-                    <div class="button">
-                        <input type="submit" value="Create" class="btn btn-dark">
-                    </div>
-                </div>
-            </form>
-        </div>
+<div>
+	<!-- Primary Navbar items -->
+    <div class="hidden md:flex items-center space-x-1 justify-end ">
+        <a href="/project/new" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">+ Add project</a>
+        <a href="" class="py-4 px-2 text-blue-500 font-semibold hover:text-blue-700 transition duration-300">Edit project</a>
+        <a href="/sign_out" class="py-4 px-2 text-blue-500 font-semibold hover:text-red-500 transition duration-300">Logout</a>
     </div>
+
+<!-- Mobile menu button -->
+    <div class="md:hidden flex items-center mt-2">
+        <button class="outline-none mobile-menu-button">
+        <svg class=" w-8 h-8 text-blue-500 hover:text-blue-500 "
+            x-show="!showMenu"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+    </div>
+			
+    <!-- mobile menu -->
+    <div class="hidden mobile-menu md:hidden">
+        <ul class="">
+            <li class="bg-blue-500 text-center text-white"><a href="/create class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">+ Add project</a></li>
+            <li class="bg-blue-500 text-center text-white my-1"><a href="/edit" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100">Edit project</a></li>
+            <li class="bg-blue-500 text-center text-white"><a href="/logout" class="block text-sm px-2 py-3 hover:bg-blue-500 transition duration-100 drop-shadow-2xl">Logout</a></li>
+        </ul>
+    </div>
+    <script>
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
+        
+    <h1 class="text-center text-4xl font-bold">New Project!!</h1>
+
+    <div class="mx-8 md: mx-4">
+        <form action="" method="post" class="">
+
+            <div class="my-8">
+            <label for="name"class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Name</label>
+            <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+
+            <div class="my-8">
+            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Discription</label>
+            <textarea name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Describe your project here"></textarea>
+            
+            </div>
+            <input type="submit" value="Create Project" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-700 mr-2 mb-2">
+        </form>
+    </div>
+</div>
+
+    
+
