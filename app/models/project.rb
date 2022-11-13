@@ -36,6 +36,18 @@ class Project < ActiveRecord::Base
         return @project_list
     end
 
+    def add_member(project_members)
+        begin
+            db = get_db
+            id = db.query("SELECT COUNT(*) FROM project_members").next[0] + 1
+            result = db.query("INSERT INTO project_members(id, project_id, member_id, role) VALUES (?,?,?,?)"),[id, project_members['project_id'], project_members['member_id'], project_members['role']]
+            p result.to_s
+            return result
+        rescue => exception
+            p exception
+        end
+    end
+
     def update(project_id, attribute, value)
         begin
             db = get_db

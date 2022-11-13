@@ -25,15 +25,34 @@ class ProjectController < ApplicationController
         end
     end
 
-    #PATCH: /project/:id/edit
-    post "/project/:id/edit" do
+    #PATCH: /project/:id/edit/name
+    post "/project/:id/edit/name" do
         if signed_in?
             if params[:id].empty?
                 return 'Error'
             else
                 @project = Project.find(params[:id])
                 if @project
-                    @project.update(params[:id], params[:attribute], params[:value])
+                    @project.update(params[:id], 'name', params[:name])
+                    redirect "/projects"
+                else
+                    redirect "/projects"
+                end
+            end
+        else
+            redirect "/projects"
+        end
+    end
+
+    #PATCH: /project/:id/edit/description
+    post "/project/:id/edit/description" do
+        if signed_in?
+            if params[:id].empty?
+                return 'Error'
+            else
+                @project = Project.find(params[:id])
+                if @project
+                    @project.update(params[:id], 'description', params[:description])
                     redirect "/projects"
                 else
                     redirect "/projects"
@@ -48,7 +67,7 @@ class ProjectController < ApplicationController
     patch "/project/edit/:id" do
         project = Project.find(params[:id])
         if project
-            project.update(params[:id], 'name', params[:name])
+            project.update(params[:id], 'name', params[:description])
             return 'Project Updated'
         else
             return 'Error'
@@ -62,7 +81,14 @@ class ProjectController < ApplicationController
             "description" => params[:description],
             "creator" => session[:user_id]
         }
-        Project.create(project_info)
+        project_id = Project.create(project_info)['id']
+        project_members = {
+            "project_id" => project_id,
+            "member_id" => session[:user_id],
+            "role" => 1
+        }
+        ProjectMembers.create(project_members)
+        # p project_members.to_s
 
         redirect "/projects"
     end
