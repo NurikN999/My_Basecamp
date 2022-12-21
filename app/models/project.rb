@@ -34,20 +34,6 @@ class Project < ActiveRecord::Base
         end
     end
 
-    def all_projects()
-        @project_list = []
-        begin
-            db = get_db()
-            @projects = db.query("SELECT * FROM projects")
-            @projects.each do |row|
-                @project_list.push(row)
-            end
-        rescue => exception
-            p exception
-        end
-        return @project_list
-    end
-
     def add_member(project_members)
         begin
             db = get_db
@@ -64,17 +50,6 @@ class Project < ActiveRecord::Base
         begin
             db = get_db
             result = db.query("UPDATE projects SET #{attribute} = '#{value}' WHERE id = #{project_id}").next
-            return result
-        rescue => exception
-            p 'Exception occured'
-            p exception
-        end
-    end
-
-    def destroy(project_id)
-        begin
-            db = get_db
-            result = db.query("DELETE FROM projects WHERE id = #{project_id}").next
             return result
         rescue => exception
             p 'Exception occured'

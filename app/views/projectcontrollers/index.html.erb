@@ -41,7 +41,7 @@
                             <%= @projects[i]['description']%>
                         </div>
                         <div class="card-footer">
-                            Created by <%= User.new.find(@projects[i]['creator'])['firstname']%>
+                            Created by <%= User.find_by(creator: @projects[i]['creator'])['firstname']%>
                         </div>
                     </div>
                 </div>

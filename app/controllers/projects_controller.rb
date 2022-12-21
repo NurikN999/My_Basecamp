@@ -2,8 +2,8 @@ class ProjectController < ApplicationController
     #GET: /projects
     # working on the main project page
     get "/projects" do
-        @projects = Project.new.all_projects()
-        @user = User.new.find(session[:user_id])
+        @projects = Project.all()
+        @user = User.find_by(id: session[:user_id])
         erb :"projectcontrollers/main.html"
     end
 
@@ -105,7 +105,8 @@ class ProjectController < ApplicationController
     #DELETE: /project/delete
     post "/project/:id/delete" do
         if signed_in?
-            Project.new.destroy(params[:id]) 
+            # project = Project.find_by(id: params[:id])
+            Project.destroy_by(id: params[:id])
             redirect "/projects"
         else
             redirect "/sign_in"
