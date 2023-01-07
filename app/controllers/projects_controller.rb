@@ -1,3 +1,4 @@
+include FileUtils::Verbose
 class ProjectController < ApplicationController
     #GET: /projects
     # working on the main project page
@@ -10,7 +11,7 @@ class ProjectController < ApplicationController
 
     #GET: /project/:id/edit
     get "/project/:id/edit" do
-        if signed_in?           
+        if signed_in?
             @project = Project.find(params[:id])
             erb :"/projectcontrollers/edit.html"
         else

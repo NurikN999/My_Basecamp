@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_13_082323) do
+ActiveRecord::Schema.define(version: 2023_01_07_221849) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "title"
+    t.string "path"
+  end
 
   create_table "project_members", force: :cascade do |t|
     t.integer "project_id"
@@ -22,6 +27,7 @@ ActiveRecord::Schema.define(version: 2022_11_13_082323) do
     t.string "name"
     t.string "description"
     t.integer "creator"
+    t.integer "attachment_id"
   end
 
   create_table "role_types", force: :cascade do |t|

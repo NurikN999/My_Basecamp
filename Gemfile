@@ -17,3 +17,5 @@ group :test do
   gem 'rack-test', '~>2.0.2'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
+
+gem "ruby-lsp", "~> 0.0.4", :group => :development
