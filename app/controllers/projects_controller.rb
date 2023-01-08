@@ -9,6 +9,32 @@ class ProjectController < ApplicationController
     end
 
 
+    #POST: /project/:id/attachment
+    post "/project/:id/attachment" do
+        file = params[:upload]
+        filename = file["filename"]
+        file_ext = File.extname(filename).strip.downcase[1..-1]
+        accepted_ext = ['png', 'jpg', 'pdf', 'txt']
+        if  accepted_ext.include? file_ext
+            dir_path = "public/uploads/"
+            tempfile = params[:upload][:tempfile]
+            cp(tempfile.path, "public/uploads/#{filename}")
+            id = Attachments.last.id + 1
+            attachment_info = {
+                "id" => id,
+                "title" => filename,
+                "path" => dir_path + filename
+            }
+            Attachments.create(attachment_info)
+            return filename
+        else
+            return {
+                "error_code" => 101,
+                "message" => "wrong file extension"
+            }.to_s
+        end
+    end
+
     #GET: /project/:id/edit
     get "/project/:id/edit" do
         if signed_in?
