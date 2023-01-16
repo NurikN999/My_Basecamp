@@ -111,6 +111,7 @@
                                             p attachments
                                             j = 0
                                             while j < attachments.length
+                                            if attachments[j]['project_id'].to_i == @projects[i]["id"]
                                         %>
                                         <li>
                                             <%=
@@ -118,6 +119,7 @@
                                             %>
                                         </li>
                                         <%
+                                            end
                                             j+=1
                                             end
                                         %>

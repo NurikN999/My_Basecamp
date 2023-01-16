@@ -26,7 +26,7 @@ class ProjectController < ApplicationController
                 "project_id" => project_id
             }
             Attachments.create(attachment_info)
-            erb :"/projectcontrollers/edit.html"
+            redirect :"/projects"
         else
             return {
                 "error_code" => 101,
