@@ -83,6 +83,53 @@
         </div>
     </div>
 </form>
+<%# /project/ @project.id/attachment/delete %>
+
+<form action="">
+    <div class="mx-8 md: mx-4">
+        <div class="my-8">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Project attachments</label>
+                <div class="block md:flex">
+                    <ul>
+                        <%
+                            attachments = Attachments.all()
+                            i = 0
+
+                            while i < attachments.length
+                                if attachments[i]['project_id'] == @project.id
+                        %>
+                        <li>
+                            <form action = "/project/<%= @project.id%>/attachment/<%=attachments[i]['id']%>/delete" method = "POST">
+                                <div class="mx-8 md: mx-4">
+                                    <div class="my-8">
+                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Attachment title</label>
+                                        <div class="block md:flex">
+                                        <p class="block mb-5 p-3.5 text-sm bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white" style = "margin-top: 20px">
+                                            <%=
+                                                attachments[i]['title']
+                                            %>
+                                        </p>
+                                            <div>
+                                                <input type="submit" value="Remove Attachment" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5  text-center inline-flex items-center dark:focus:ring-blue-700 md:ml-8 my-4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <%
+                                end
+                                i += 1
+                            end
+                        %>
+                    </ul>
+                <div>
+
+                </div>
+                </div>
+        </div>
+    </div>
+</form>
 
 <form action = "/project/<%= @project.id%>/attachment" method = "POST" enctype="multipart/form-data">
     <div class="mx-8 md: mx-4">

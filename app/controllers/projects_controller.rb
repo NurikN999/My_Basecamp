@@ -35,6 +35,12 @@ class ProjectController < ApplicationController
         end
     end
 
+    #POST: /project/:id/attachment/:attachment_id/delete
+    post "/project/:id/attachment/:attachment_id/delete" do
+        Attachments.delete(params[:attachment_id])
+        redirect :"/projects"
+    end
+
     #GET: /project/:id/edit
     get "/project/:id/edit" do
         if signed_in?
