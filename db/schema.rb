@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2023_01_07_221849) do
   create_table "attachments", force: :cascade do |t|
     t.string "title"
     t.string "path"
+    t.integer "project_id"
   end
 
   create_table "project_members", force: :cascade do |t|
@@ -27,7 +28,6 @@ ActiveRecord::Schema.define(version: 2023_01_07_221849) do
     t.string "name"
     t.string "description"
     t.integer "creator"
-    t.integer "attachment_id"
   end
 
   create_table "role_types", force: :cascade do |t|

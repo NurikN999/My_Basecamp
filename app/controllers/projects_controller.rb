@@ -13,17 +13,17 @@ class ProjectController < ApplicationController
     post "/project/:id/attachment" do
         file = params[:upload]
         filename = file["filename"]
+        project_id = params[:id]
         file_ext = File.extname(filename).strip.downcase[1..-1]
         accepted_ext = ['png', 'jpg', 'pdf', 'txt']
         if  accepted_ext.include? file_ext
             dir_path = "public/uploads/"
             tempfile = params[:upload][:tempfile]
             cp(tempfile.path, "public/uploads/#{filename}")
-            id = Attachments.last.id + 1
             attachment_info = {
-                "id" => id,
                 "title" => filename,
-                "path" => dir_path + filename
+                "path" => dir_path + filename,
+                "project_id" => project_id
             }
             Attachments.create(attachment_info)
             return filename
