@@ -23,7 +23,7 @@
         </svg>
     </button>
     </div>
-			
+
     <!-- mobile menu -->
     <div class="hidden mobile-menu md:hidden">
         <ul class="">
@@ -40,7 +40,7 @@
             menu.classList.toggle("hidden");
         });
     </script>
-        
+
     <h1 class="text-center text-4xl font-bold">Edit Project!!</h1>
       <h1 class="text-center">Created by creator</h1>
 
@@ -51,11 +51,11 @@
                 <div class="block md:flex">
                 <input type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-12 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4 ">
                 <input type="submit" value="Update name" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-700 md:ml-8 mb-4">
-                
+
                 </div>
             </div>
     </div>
-    
+
 </form>
 
 <form action = "/project/<%= @project.id%>/edit/description" method = "POST">
@@ -83,9 +83,25 @@
         </div>
     </div>
 </form>
+
+<form action = "/project/<%= @project.id%>/attachment" method = "POST" enctype="multipart/form-data">
+    <div class="mx-8 md: mx-4">
+        <div class="my-8">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Project attachments</label>
+                <div class="block md:flex">
+                    <div>
+                        <input type="file" name="upload">
+                    </div>
+                    <div>
+                        <input type="submit" value="Upload File" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5  text-center inline-flex items-center dark:focus:ring-blue-700 md:ml-8 my-4">
+                    </div>
+                </div>
+        </div>
+    </div>
+</form>
 </div>
 
-    
+
 
 <%# <form action = "/project/= @project.id/edit" method = "POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
